@@ -17,4 +17,10 @@
 <resources>
     <!-- App Name -->
     <string name="app_name">Xiaomi Parts</string>
+
+    <!-- Edge Suppression -->
+    <string name="edgemode_name">Edge rejection</string>
+    <string name="info_summary">Set ignore accidental touch area for curved edges.</string>
+    <string name="infos">The area around curved edges won\'t respond to touch</string>
+    <string name="currntval">Currently Set:</string>
 </resources>
