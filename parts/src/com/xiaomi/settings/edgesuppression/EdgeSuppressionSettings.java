@@ -38,7 +38,7 @@ public class EdgeSuppressionSettings extends CollapsingToolbarBaseActivity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.edgemode);
-        this.mEdgeSuppressionManager = EdgeSuppressionManager.getInstance(this);
+        this.mEdgeSuppressionManager = EdgeSuppressionManager.getInstance(getApplicationContext());
         SharedPreferences sharedPreferences = getSharedPreferences("edgesize", 0);
         final SharedPreferences.Editor edit = sharedPreferences.edit();
         this.direction = getDisplay().getRotation();
@@ -50,7 +50,7 @@ public class EdgeSuppressionSettings extends CollapsingToolbarBaseActivity {
         float f = sharedPreferences.getFloat("edgesize", 0.0f);
         this.setededgesize = f;
         this.edgesize.setProgress((int) (f * 100.0f));
-        int suppressionSize = EdgeSuppressionManager.getInstance(this).getSuppressionSize(false, this.setededgesize);
+        int suppressionSize = EdgeSuppressionManager.getInstance(getApplicationContext()).getSuppressionSize(false, this.setededgesize);
         this.mTipAreaWidth = suppressionSize;
         initTipView(this, suppressionSize);
         this.edgesize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -79,33 +79,33 @@ public class EdgeSuppressionSettings extends CollapsingToolbarBaseActivity {
     @Override
     public void onStart() {
         super.onStart();
-        EdgeSuppressionManager.getInstance(this).registerlistener();
+        EdgeSuppressionManager.getInstance(getApplicationContext()).registerlistener();
         valUpdate();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        EdgeSuppressionManager.getInstance(this).registerlistener();
+        EdgeSuppressionManager.getInstance(getApplicationContext()).registerlistener();
         valUpdate();
     }
 
     @Override 
     public void onPause() {
         super.onPause();
-        EdgeSuppressionManager.getInstance(this).unregisterlistener();
+        EdgeSuppressionManager.getInstance(getApplicationContext()).unregisterlistener();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        EdgeSuppressionManager.getInstance(this).unregisterlistener();
+        EdgeSuppressionManager.getInstance(getApplicationContext()).unregisterlistener();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        EdgeSuppressionManager.getInstance(this).unregisterlistener();
+        EdgeSuppressionManager.getInstance(getApplicationContext()).unregisterlistener();
     }
 
     @Override
@@ -119,7 +119,7 @@ public class EdgeSuppressionSettings extends CollapsingToolbarBaseActivity {
 
     public void valUpdate() {
         this.setededgesize2 = getSharedPreferences("edgesize", 0).getFloat("edgesize", 0.0f);
-        int suppressionSize = EdgeSuppressionManager.getInstance(this).getSuppressionSize(false, this.setededgesize2);
+        int suppressionSize = EdgeSuppressionManager.getInstance(getApplicationContext()).getSuppressionSize(false, this.setededgesize2);
         this.mTipAreaWidth2 = suppressionSize;
         setRestrictedViewWidth(suppressionSize);
     }
