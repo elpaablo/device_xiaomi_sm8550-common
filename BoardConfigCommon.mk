@@ -170,6 +170,10 @@ ENABLE_VENDOR_RIL_SERVICE := true
 # SEPolicy
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
+ifneq ($(wildcard vendor/xiaomi/camera/miuicamera.mk),)
+BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/miuicamera
+BOARD_SEPOLICY_M4DEFS += target_has_miuicamera=true
+endif
 include device/qcom/sepolicy_vndr/SEPolicy.mk
 
 # System properties
