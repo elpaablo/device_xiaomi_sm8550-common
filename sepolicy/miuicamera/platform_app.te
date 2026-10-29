@@ -4,3 +4,8 @@ allow platform_app vendor_xdsp_device:chr_file r_file_perms;
 
 get_prop(platform_app, vendor_audio_prop)
 get_prop(platform_app, vendor_camera_sensor_prop)
+
+# MiuiCamera's in-process AI vision searches /vendor/dsp for its skels.
+# Only the directory: coredomains are neverallowed any access to a
+# vendor_file_type file that is not same_process_hal_file.
+allow platform_app adsprpcd_file:dir r_dir_perms;
